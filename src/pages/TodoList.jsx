@@ -23,6 +23,8 @@ const TodoBox = styled.div`
 `;
 
 const TodoTitle = styled.span`
+    font-size: xx-large;
+    font-weight: bolder;
     margin-right: 10px;
 `;
 
@@ -65,7 +67,8 @@ const TodoList = () => {
     return (
         <Wrap>
             <TodoBox>
-                <h1><TodoTitle>{todoList.title}</TodoTitle><TodoId>ID: {todoList.id}</TodoId></h1>
+                <TodoTitle>{todoList.title}</TodoTitle>
+                <TodoId>ID: {todoList.id}</TodoId>
                 <TodoBody>{todoList.body}</TodoBody>
                 <HomeButton to={`/`}>목록</HomeButton>
             </TodoBox>
