@@ -6,13 +6,17 @@ import styled from 'styled-components';
 
 import {Link} from "react-router-dom";
 
+const BoxContainer = styled.div`
+`;
+
 const TodoBox = styled.div`
     height: 110px;
+    width: 48%;
+    margin: 10px;
     display: flex;
-    justify-content: center;
+    float: left;
     border: 2px solid;
     border-radius: 5px;
-    margin-bottom: 10px;
 `;
 
 const TodoLink = styled(Link)`
@@ -22,7 +26,7 @@ const TodoLink = styled(Link)`
     
     text-decoration: none;
     display: grid;
-    width: 89.65517241379311vw;
+    width: 30vw;
     color: black;
 `;
 
@@ -59,33 +63,35 @@ const TodoButton = styled.button`
 const ToDo = (props) => {
     const dispatch = useDispatch();
 
-    const onClickDoneButton = () => {
+    const doneToggle = () => {
         dispatch(doneItem(props.todo.id));
     };
 
-    const onClickDeleteButton = () => {
+    const deleteButton = () => {
         dispatch(deleteItem(props.todo.id));
     };
 
     return (
-        <TodoBox>
-            <TodoLink to={`/todolist/${props.todo.id}`}>
-                <TodoTitle>{props.todo.title}</TodoTitle>
-                <TodoBody>{props.todo.body}</TodoBody>
-            </TodoLink>
-            <TodoButtonBox>
-                <TodoButton type="button"
-                            onClick={onClickDeleteButton}
-                >
-                    삭제
-                </TodoButton>
-                <TodoButton type="button"
-                            onClick={onClickDoneButton}
-                >
-                    {props.todo.checked ? '취소' : '완료'}
-                </TodoButton>
-            </TodoButtonBox>
-        </TodoBox>
+        <BoxContainer>
+            <TodoBox>
+                <TodoLink to={`/tododetail/${props.todo.id}`}>
+                    <TodoTitle>{props.todo.title}</TodoTitle>
+                    <TodoBody>{props.todo.body}</TodoBody>
+                </TodoLink>
+                <TodoButtonBox>
+                    <TodoButton type="button"
+                                onClick={deleteButton}
+                    >
+                        삭제
+                    </TodoButton>
+                    <TodoButton type="button"
+                                onClick={doneToggle}
+                    >
+                        {props.todo.checked ? '취소' : '완료'}
+                    </TodoButton>
+                </TodoButtonBox>
+            </TodoBox>
+        </BoxContainer>
     );
 };
 

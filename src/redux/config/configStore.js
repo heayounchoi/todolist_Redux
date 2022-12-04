@@ -4,7 +4,7 @@ import {combineReducers} from "redux";
 import item from '../modules/item';
 
 const rootReducer = combineReducers({
-    item: item,
+    item,
 });
 const store = createStore(rootReducer);
 

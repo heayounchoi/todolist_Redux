@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import TodoList from "../pages/TodoList";
+import TodoDetail from "../pages/TodoDetail";
 import Layout from "../components/layout/Layout";
 
 const Router = () => {
@@ -8,7 +8,7 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />} />
-                <Route path="todolist/:id" element={<TodoList />} />
+                <Route path="tododetail/:id" element={<TodoDetail />} />
             </Routes>
         </BrowserRouter>
     );

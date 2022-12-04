@@ -38,7 +38,7 @@ const TodoBody = styled.span`
     font-size: x-large;
 `;
 
-const HomeButton = styled(Link)`
+const HomeLink = styled(Link)`
     &:hover {
     background-color: lightgray;
     }
@@ -55,25 +55,23 @@ const HomeButton = styled(Link)`
     align-items: center;
 `;
 
-const TodoList = () => {
-    const items = useSelector((state) => state.item);
-
-    const {todos} = items
+const TodoDetail = () => {
+    const todos = useSelector((state) => state.item.todos);
 
     const param = useParams();
 
-    const todoList = todos.find((item) => item.id === parseInt(param.id));
+    const todoDetail = todos.find((item) => item.id === parseInt(param.id));
 
     return (
         <Wrap>
             <TodoBox>
-                <TodoTitle>{todoList.title}</TodoTitle>
-                <TodoId>ID: {todoList.id}</TodoId>
-                <TodoBody>{todoList.body}</TodoBody>
-                <HomeButton to={`/`}>목록</HomeButton>
+                <TodoTitle>{todoDetail.title}</TodoTitle>
+                <TodoId>ID: {todoDetail.id}</TodoId>
+                <TodoBody>{todoDetail.body}</TodoBody>
+                <HomeLink to={`/`}>목록</HomeLink>
             </TodoBox>
         </Wrap>
     )
 }
 
-export default TodoList;
+export default TodoDetail;

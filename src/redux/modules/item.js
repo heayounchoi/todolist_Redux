@@ -30,21 +30,18 @@ const initialState = {
             title: '겨울나기 준비',
             body: '감자 심기',
             checked: false,
-            deleted: false,
         },
         {
             id: 2,
             title: '식사',
             body: '돌맹이 먹기',
             checked: false,
-            deleted: false,
         },
         {
             id: 3,
             title: '친구 만들기',
             body: '외계인 납치',
             checked: false,
-            deleted: false,
         },
     ],
 };
@@ -65,10 +62,7 @@ const item = (state = initialState, action) => {
             };
         case DELETE:
             return {
-                todos: state.todos.map((item) => ({
-                    ...item,
-                    deleted: item.id === action.payload ? true : item.deleted,
-                }))
+                todos: state.todos.filter((item) => item.id !== action.payload)
             };
         default:
             return state;

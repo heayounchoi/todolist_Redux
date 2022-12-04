@@ -12,9 +12,7 @@ const TitleBox = styled.h2`
 `;
 
 const List = ({checkedList}) => {
-    const items = useSelector((state) => state.item);
-
-    const {todos} = items
+    const todos = useSelector((state) => state.item.todos);
 
     return (
         <div>
@@ -23,12 +21,10 @@ const List = ({checkedList}) => {
                 {todos &&
                     todos.map((todo) => {
 
-                        if (todo.deleted) return null
-
                         if (checkedList !== todo.checked) return null
 
                         return (
-                                <Todo todo={todo}/>
+                                <Todo key={todo.id} todo={todo}/>
                         );
                     })}
             </div>

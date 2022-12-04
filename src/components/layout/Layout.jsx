@@ -5,6 +5,12 @@ import List from '../list/List';
 
 import styled from 'styled-components';
 
+const Wrap = styled.div`
+    margin: auto;
+    width: 1200px;
+    height: 800px;
+`;
+
 const HeaderBox = styled.div`
     display: flex;
     justify-content: end;
@@ -15,14 +21,14 @@ const HeaderBox = styled.div`
 
 const Layout = () => {
     return (
-        <div>
+        <Wrap>
             <HeaderBox>
                 <Header/>
             </HeaderBox>
             <Form/>
             <List checkedList={false}/>
             <List checkedList={true}/>
-        </div>
+        </Wrap>
     );
 };
 

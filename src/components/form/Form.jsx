@@ -51,7 +51,7 @@ const Form = () => {
     };
 
 
-    const onClickAddButton = () => {
+    const addButton = () => {
         if (title === '' || body === '') {
             alert('명왕성 조깅이라도 하3')
         } else {
@@ -60,7 +60,6 @@ const Form = () => {
                 title,
                 body,
                 checked: false,
-                deleted: false,
             }));
         }
 
@@ -81,7 +80,7 @@ const Form = () => {
                       onChange={onChangeBody}
             />
             <AddButton type="button"
-                       onClick={onClickAddButton}
+                       onClick={addButton}
             >
                 등록
             </AddButton>
