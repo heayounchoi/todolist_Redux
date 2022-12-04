@@ -1,6 +1,7 @@
 const SAVE = "SAVE";
 const DONE = "DONE";
 const DELETE = "DELETE";
+const COLOR = "COLOR"
 
 export const saveItem = (payload) => {
     return {
@@ -19,6 +20,13 @@ export const doneItem = (payload) => {
 export const deleteItem = (payload) => {
     return {
         type: DELETE,
+        payload
+    };
+};
+
+export const changeColor = (payload) => {
+    return {
+        type: COLOR,
         payload
     };
 };
@@ -44,6 +52,7 @@ const initialState = {
             checked: false,
         },
     ],
+    colors: "black",
 };
 
 const item = (state = initialState, action) => {
@@ -64,9 +73,15 @@ const item = (state = initialState, action) => {
             return {
                 todos: state.todos.filter((item) => item.id !== action.payload)
             };
+        case COLOR:
+            return {
+                ...state,
+                colors: action.payload
+            };
         default:
             return state;
-    };
+    }
+    ;
 };
 
 export default item;

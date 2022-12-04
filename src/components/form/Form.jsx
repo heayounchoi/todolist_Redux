@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 
-import {saveItem} from "../../redux/modules/item";
+import {saveItem, changeColor} from "../../redux/modules/item";
 
 const FormBox = styled.div`
     height: 50px;
@@ -22,6 +22,7 @@ const InputBox = styled.input`
     width: 200px;
     height: 25px;
     border-radius: 3px;
+    border-color: ${(props) => props.color};
 `;
 
 const AddButton = styled.button`
@@ -30,7 +31,19 @@ const AddButton = styled.button`
     }
     margin-left: 5%;
     background-color: transparent;
-    border: 1px solid;
+    border: 1px solid ${(props) => props.color};
+    border-radius: 3px;
+    width: 50px;
+    height: 33px;
+`;
+
+const ColorButton = styled.button`
+    &:hover {
+    background-color: lightgray;
+    }
+    margin-left: 5px;
+    background-color: transparent;
+    border: 1px solid ${(props) => props.color};
     border-radius: 3px;
     width: 50px;
     height: 33px;
@@ -39,8 +52,12 @@ const AddButton = styled.button`
 const Form = () => {
     const dispatch = useDispatch();
 
+    const color = useSelector((state) => state.item.colors)
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+
+    const [count, setCount] = useState(0);
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -53,7 +70,7 @@ const Form = () => {
 
     const addButton = () => {
         if (title === '' || body === '') {
-            alert('명왕성 조깅이라도 하3')
+            alert('머라도 하라')
         } else {
             dispatch(saveItem({
                 id: new Date().valueOf(),
@@ -67,23 +84,39 @@ const Form = () => {
         setBody('');
     };
 
+    const colored = () => {
+        const newCount = count+1
+        setCount(newCount)
+
+        count%2 === 0 ? dispatch(changeColor("black")) : dispatch(changeColor("pink"))
+    }
+
     return (
         <FormBox>
             <InputTitle>제목</InputTitle>
             <InputBox type="text"
                       value={title}
                       onChange={onChangeTitle}
+                      color={color}
             />
             <InputTitle>내용</InputTitle>
             <InputBox type="text"
                       value={body}
                       onChange={onChangeBody}
+                      color={color}
             />
             <AddButton type="button"
                        onClick={addButton}
+                       color={color}
             >
                 등록
             </AddButton>
+            <ColorButton type="button"
+                         onClick={colored}
+                         color={color}
+            >
+                Color
+            </ColorButton>
         </FormBox>
     );
 };

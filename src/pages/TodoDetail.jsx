@@ -18,7 +18,7 @@ const TodoBox = styled.div`
     display: grid;
     justify-content: center;
     align-items: center;
-    border: 1px solid;
+    border: 1px solid ${(props) => props.color};
     border-radius: 7px;
 `;
 

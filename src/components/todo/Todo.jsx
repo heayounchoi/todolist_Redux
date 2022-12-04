@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {doneItem, deleteItem} from "../../redux/modules/item";
 
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ const TodoBox = styled.div`
     margin: 10px;
     display: flex;
     float: left;
-    border: 2px solid;
+    border: 2px solid ${(props) => props.color};
     border-radius: 5px;
 `;
 
@@ -57,11 +57,13 @@ const TodoButton = styled.button`
     padding: 5px;
     margin-right: 7px;
     border-radius: 3px;
-    border: 1px solid;
+    border: 1px solid ${(props) => props.color};
 `;
 
 const ToDo = (props) => {
     const dispatch = useDispatch();
+
+    const color = useSelector((state) => state.item.colors)
 
     const doneToggle = () => {
         dispatch(doneItem(props.todo.id));
@@ -73,7 +75,7 @@ const ToDo = (props) => {
 
     return (
         <BoxContainer>
-            <TodoBox>
+            <TodoBox color={color}>
                 <TodoLink to={`/tododetail/${props.todo.id}`}>
                     <TodoTitle>{props.todo.title}</TodoTitle>
                     <TodoBody>{props.todo.body}</TodoBody>
@@ -81,11 +83,13 @@ const ToDo = (props) => {
                 <TodoButtonBox>
                     <TodoButton type="button"
                                 onClick={deleteButton}
+                                color={color}
                     >
                         삭제
                     </TodoButton>
                     <TodoButton type="button"
                                 onClick={doneToggle}
+                                color={color}
                     >
                         {props.todo.checked ? '취소' : '완료'}
                     </TodoButton>
