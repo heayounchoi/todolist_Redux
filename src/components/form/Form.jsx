@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {saveItem, changeColor} from "../../redux/modules/item";
 
 const FormBox = styled.div`
+    cursor: default;
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -29,6 +30,8 @@ const AddButton = styled.button`
     &:hover {
     background-color: lightgray;
     }
+    
+    cursor: pointer;
     margin-left: 5%;
     background-color: transparent;
     border: 1px solid ${(props) => props.color};
@@ -41,6 +44,8 @@ const ColorButton = styled.button`
     &:hover {
     background-color: lightgray;
     }
+    
+    cursor: pointer;
     margin-left: 5px;
     background-color: transparent;
     border: 1px solid ${(props) => props.color};
@@ -88,7 +93,9 @@ const Form = () => {
         const newCount = count+1
         setCount(newCount)
 
-        count%2 === 0 ? dispatch(changeColor("black")) : dispatch(changeColor("pink"))
+        const newColor = ["black", "hotpink", "aquamarine", "dodgerblue"]
+
+        dispatch(changeColor(newColor[newCount%4]))
     }
 
     return (

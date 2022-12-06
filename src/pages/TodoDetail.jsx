@@ -43,6 +43,7 @@ const HomeLink = styled(Link)`
     background-color: lightgray;
     }
     
+    cursor: pointer;
     text-decoration: none;
     font-size: initial;
     color: black;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 
 const HeaderTitle = styled.h1`
+    cursor: default;
     font-size: 80px;
     font-synthesis: none;
     color: whitesmoke;

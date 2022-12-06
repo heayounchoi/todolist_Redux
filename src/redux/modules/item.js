@@ -13,7 +13,7 @@ export const saveItem = (payload) => {
 export const doneItem = (payload) => {
     return {
         type: DONE,
-        payload
+        payload,
     };
 };
 
@@ -49,7 +49,7 @@ const initialState = {
             id: 3,
             title: '친구 만들기',
             body: '외계인 납치',
-            checked: false,
+            checked: true,
         },
     ],
     colors: "black",

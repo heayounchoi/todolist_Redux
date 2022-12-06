@@ -52,6 +52,7 @@ const TodoButton = styled.button`
     background-color: lightgray;
     }
     
+    cursor: pointer;
     background-color: transparent;
     font-size: larger;
     padding: 5px;
@@ -60,25 +61,25 @@ const TodoButton = styled.button`
     border: 1px solid ${(props) => props.color};
 `;
 
-const ToDo = (props) => {
+const ToDo = ({todo: {id, title, body, checked}}) => {
     const dispatch = useDispatch();
 
     const color = useSelector((state) => state.item.colors)
 
     const doneToggle = () => {
-        dispatch(doneItem(props.todo.id));
+        dispatch(doneItem(id));
     };
 
     const deleteButton = () => {
-        dispatch(deleteItem(props.todo.id));
+        dispatch(deleteItem(id));
     };
 
     return (
         <BoxContainer>
             <TodoBox color={color}>
-                <TodoLink to={`/tododetail/${props.todo.id}`}>
-                    <TodoTitle>{props.todo.title}</TodoTitle>
-                    <TodoBody>{props.todo.body}</TodoBody>
+                <TodoLink to={`/tododetail/${id}`}>
+                    <TodoTitle>{title}</TodoTitle>
+                    <TodoBody>{body}</TodoBody>
                 </TodoLink>
                 <TodoButtonBox>
                     <TodoButton type="button"
@@ -91,7 +92,7 @@ const ToDo = (props) => {
                                 onClick={doneToggle}
                                 color={color}
                     >
-                        {props.todo.checked ? '취소' : '완료'}
+                        {checked ? '취소' : '완료'}
                     </TodoButton>
                 </TodoButtonBox>
             </TodoBox>
