@@ -57,7 +57,7 @@ const ColorButton = styled.button`
 const Form = () => {
     const dispatch = useDispatch();
 
-    const color = useSelector((state) => state.item.colors)
+    const color = useSelector((state) => state.item.color)
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
@@ -90,12 +90,11 @@ const Form = () => {
     };
 
     const colored = () => {
-        const newCount = count+1
-        setCount(newCount)
+        setCount((prev) => prev + 1)
 
         const newColor = ["black", "hotpink", "aquamarine", "dodgerblue"]
 
-        dispatch(changeColor(newColor[newCount%4]))
+        dispatch(changeColor(newColor[count % 4]))
     }
 
     return (

@@ -64,7 +64,7 @@ const TodoButton = styled.button`
 const ToDo = ({todo: {id, title, body, checked}}) => {
     const dispatch = useDispatch();
 
-    const color = useSelector((state) => state.item.colors)
+    const color = useSelector((state) => state.item.color)
 
     const doneToggle = () => {
         dispatch(doneItem(id));

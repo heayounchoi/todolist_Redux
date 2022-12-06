@@ -52,7 +52,7 @@ const initialState = {
             checked: true,
         },
     ],
-    colors: "black",
+    color: "black",
 };
 
 const item = (state = initialState, action) => {
@@ -64,6 +64,7 @@ const item = (state = initialState, action) => {
             };
         case DONE:
             return {
+                ...state,
                 todos: state.todos.map((item) => ({
                     ...item,
                     checked: item.id === action.payload ? !item.checked : item.checked,
@@ -71,12 +72,13 @@ const item = (state = initialState, action) => {
             };
         case DELETE:
             return {
+                ...state,
                 todos: state.todos.filter((item) => item.id !== action.payload)
             };
         case COLOR:
             return {
                 ...state,
-                colors: action.payload
+                color: action.payload
             };
         default:
             return state;

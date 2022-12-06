@@ -49,7 +49,7 @@ const HomeLink = styled(Link)`
     color: black;
     background-color: transparent;
     height: 40px;
-    border: 1px solid;
+    border: 1px solid ${(props) => props.color};
     border-radius: inherit;
     display: grid;
     justify-content: center;
@@ -57,7 +57,7 @@ const HomeLink = styled(Link)`
 `;
 
 const TodoDetail = () => {
-    const todos = useSelector((state) => state.item.todos);
+    const {todos, color} = useSelector((state) => state.item);
 
     const param = useParams();
 
@@ -65,11 +65,11 @@ const TodoDetail = () => {
 
     return (
         <Wrap>
-            <TodoBox>
+            <TodoBox color={color}>
                 <TodoTitle>{todoDetail.title}</TodoTitle>
                 <TodoId>ID: {todoDetail.id}</TodoId>
                 <TodoBody>{todoDetail.body}</TodoBody>
-                <HomeLink to={`/`}>목록</HomeLink>
+                <HomeLink to={`/`} color={color}>목록</HomeLink>
             </TodoBox>
         </Wrap>
     )
