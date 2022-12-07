@@ -61,14 +61,14 @@ const TodoDetail = () => {
 
     const param = useParams();
 
-    const todoDetail = todos.find((item) => item.id === parseInt(param.id));
+    const {id, title, body} = todos.find((todo) => todo.id === parseInt(param.id));
 
     return (
         <Wrap>
             <TodoBox color={color}>
-                <TodoTitle>{todoDetail.title}</TodoTitle>
-                <TodoId>ID: {todoDetail.id}</TodoId>
-                <TodoBody>{todoDetail.body}</TodoBody>
+                <TodoTitle>{title}</TodoTitle>
+                <TodoId>ID: {id}</TodoId>
+                <TodoBody>{body}</TodoBody>
                 <HomeLink to={`/`} color={color}>목록</HomeLink>
             </TodoBox>
         </Wrap>
